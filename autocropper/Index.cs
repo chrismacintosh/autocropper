@@ -164,7 +164,7 @@ namespace autocropper
             width = image.Width * .97;
             height = image.Height * .97;
             Rectangle crop = new Rectangle(0,0,(int)width,(int)height);
-        
+
             Bitmap newimage2 = cropImage(image, crop);
             image.Dispose(); //Release image from memory so we can delete it since it's saved.
             
