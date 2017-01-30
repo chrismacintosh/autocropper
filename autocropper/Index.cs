@@ -159,22 +159,13 @@ namespace autocropper
 
         private void crop_photo(FileSystemEventArgs FileimagePath)
         {
-            double width, height; int x = 0, y = 0;
+            double width, height;
 
             Image image = Image.FromFile(FileimagePath.FullPath);
-            width = image.Width * .03;
-            height = image.Height * .03;
+            width = image.Width * .97;
+            height = image.Height * .97;
             Rectangle crop = new Rectangle(0,0,(int)width,(int)height);
-            /*
-            Bitmap src = image as Bitmap;
-            Bitmap target = new Bitmap(crop.Width, crop.Height);
-
-            using (Graphics g = Graphics.FromImage(target))
-            {
-                g.DrawImage(src, new(Rectangle(0, 0, target.Width, target.Height),
-                    crop,
-                    GraphicsUnit.Pixel));
-            }*/
+        
             Bitmap newimage2 = cropImage(image, crop);
             image.Dispose(); //Release image from memory so we can delete it since it's saved.
             
