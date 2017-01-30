@@ -142,12 +142,11 @@ namespace autocropper
 
         private void handle_Newfile(object source, FileSystemEventArgs e)
         {
-            
             //Get file extension
             string fileExtension = Path.GetExtension(e.FullPath);
 
-            //Check file types
-            if (Regex.IsMatch(fileExtension, @"\.jpeg|\.gif|.png|\.jpg", RegexOptions.IgnoreCase))
+            //Check file types and make sure this isn't an already cropped photo.
+            if (Regex.IsMatch(fileExtension, @"\.jpeg|\.gif|.png|\.jpg", RegexOptions.IgnoreCase) && !Regex.IsMatch(e.Name,@"Cropped",RegexOptions.IgnoreCase))
             {
                 string destinationFile = outdirectory +"\\" + e.Name;
                 //Copy file to new directory
@@ -170,7 +169,9 @@ namespace autocropper
             image.Dispose(); //Release image from memory so we can delete it since it's saved.
             
             File.Delete(FileimagePath.FullPath);
-            newimage2.Save(FileimagePath.FullPath);
+
+            string newpath = indirectory+"\\Cropped"+FileimagePath.Name;
+            newimage2.Save(newpath);
         }
 
         private static Bitmap cropImage(Image img, Rectangle cropArea)
