@@ -1,0 +1,9 @@
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\bin\Release\autocropper.exe.config
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\bin\Release\autocropper.exe
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\bin\Release\autocropper.pdb
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\obj\Release\autocropper.Index.resources
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\obj\Release\autocropper.Properties.Resources.resources
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\obj\Release\autocropper.csproj.GenerateResource.Cache
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\obj\Release\autocropper.exe
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\obj\Release\autocropper.pdb
+c:\users\macin\documents\visual studio 2015\Projects\autocropper\autocropper\obj\Release\autocropper.csprojResolveAssemblyReference.cache
