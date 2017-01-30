@@ -7,12 +7,8 @@ In the event that someone steals your photographs and tries to claim them as the
 None known / reported!
 
 #Release
-Current Release Version: 0.107b (1/30/2017)
-
-Functionality: Watches folder after you manually set it using the app. No config present.
-
-#Coming in 0.11b:
-...Working functionality.
+#Current Release Version: 0.11b (1/30/2017 1508PST)
+Working functionality.
 Statistics printed in app window
 
 #Coming in 0.12b:
