@@ -14,6 +14,9 @@ namespace autocropper
 {
     public partial class Index : Form
     {
+        //Filesystem watcher instance. Needs to be here so we can turn it on / off.
+        FileSystemWatcher watcher = new FileSystemWatcher();
+
         string indirectory;
         string outdirectory;
 
@@ -99,6 +102,9 @@ namespace autocropper
         private void stopbutton_Click(object sender, EventArgs e)
         {
             //stop file watcher
+            watcher.EnableRaisingEvents = false;
+            SetStatusText("Stopped.");
+            label4.ForeColor = System.Drawing.Color.LightGoldenrodYellow;
         }
 
         private void startbutton_Click(object sender, EventArgs e)
@@ -110,17 +116,17 @@ namespace autocropper
             {
                 watch_folder();
             }
-            //do nothing
+            
         }
 
         private bool settings_valid()
         {
+            //Assuming they're correct right now... TODO!!!!!!!!!!!!!!!!
             return true;
         }
 
         private void watch_folder()
         {
-            FileSystemWatcher watcher = new FileSystemWatcher();
             //Set the watchers path to the directory chosen
             watcher.Path = indirectory;
 
@@ -138,10 +144,18 @@ namespace autocropper
 
             //Start the watcher
             watcher.EnableRaisingEvents = true;
+
+            //Change label text to "Waiting for files..."
+            SetStatusText("Waiting for files...");
+            label4.ForeColor = Color.Green;
         }
 
         private void handle_Newfile(object source, FileSystemEventArgs e)
         {
+            label4.ForeColor = Color.Blue;
+            string labelText = "Processed:" + e.Name;
+            SetStatusText(labelText);
+
             //Get file extension
             string fileExtension = Path.GetExtension(e.FullPath);
 
@@ -156,6 +170,20 @@ namespace autocropper
             }
         }
 
+        delegate void SetTextCallback(string text);
+
+        private void SetStatusText(string text)
+        {
+            if (this.label4.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetStatusText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.label4.Text = text;
+            }
+        }
         private void crop_photo(FileSystemEventArgs FileimagePath)
         {
             double width, height;
@@ -172,6 +200,10 @@ namespace autocropper
 
             string newpath = indirectory+"\\Cropped"+FileimagePath.Name;
             newimage2.Save(newpath);
+
+            label4.ForeColor = Color.Blue;
+            //This line isn't working right now. Hmmm...
+            //SetStatusText("Waiting for files...");
         }
 
         private static Bitmap cropImage(Image img, Rectangle cropArea)

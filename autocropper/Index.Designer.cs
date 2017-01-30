@@ -39,6 +39,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -99,10 +100,12 @@
             this.label3.BackColor = System.Drawing.Color.DarkRed;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label3.ForeColor = System.Drawing.Color.Gold;
-            this.label3.Location = new System.Drawing.Point(53, 158);
+            this.label3.Location = new System.Drawing.Point(10, 158);
+            this.label3.MaximumSize = new System.Drawing.Size(250, 50);
+            this.label3.MinimumSize = new System.Drawing.Size(250, 50);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 0, 100, 25);
-            this.label3.Size = new System.Drawing.Size(174, 50);
+            this.label3.Size = new System.Drawing.Size(250, 50);
             this.label3.TabIndex = 4;
             this.label3.Text = "Status:";
             // 
@@ -140,6 +143,17 @@
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.White;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.DarkRed;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label4.Location = new System.Drawing.Point(74, 162);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 20);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Not Running";
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,6 +162,7 @@
             this.BackgroundImage = global::autocropper.Properties.Resources.road;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -182,6 +197,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label4;
     }
 }
 
