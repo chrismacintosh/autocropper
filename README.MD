@@ -7,9 +7,9 @@ In the event that someone steals your photographs and tries to claim them as the
 Well... right now the program will get caught in an endless loop.
 
 #Release
-Current Release Version: 0.10b (1/29/2017)
+Current Release Version: 0.107b (1/30/2017)
 
-Functionality: Not currently working. One bug fix until it's functional.
+Functionality: Watches folder after you manually set it using the app. No config present.
 
 #Coming in 0.11b:
 ...Working functionality.
