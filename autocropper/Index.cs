@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Configuration;
+using System.Threading;
 
 namespace autocropper
 {
@@ -17,17 +19,25 @@ namespace autocropper
         //Filesystem watcher instance. Needs to be here so we can turn it on / off.
         FileSystemWatcher watcher = new FileSystemWatcher();
 
-        string indirectory;
-        string outdirectory;
-
         public Index()
         {
-            InitializeComponent();
+            try
+            {
+               
+            }
+            finally
+            {
+                InitializeComponent();
+            }
         }
 
         private void Index_Load(object sender, EventArgs e)
         {
-
+            if(Properties.Settings.Default.inputdirectory != "" && Properties.Settings.Default.outputdirectory != "")
+            {
+                SetStatusText("Config loaded! Ready to start!");
+                startbutton.Enabled = true;
+            }
         }
 
         //Double click handler for tray icon.
@@ -69,7 +79,10 @@ namespace autocropper
 
                     if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                     {
-                        indirectory = fbd.SelectedPath;
+                        Properties.Settings.Default.inputdirectory = fbd.SelectedPath;
+                        Properties.Settings.Default.Save();
+                        SetStatusText("Set input directory successfully!");
+                        if(Properties.Settings.Default.outputdirectory != "") { startbutton.Enabled = true; }
                     }
                 }
             }
@@ -89,7 +102,10 @@ namespace autocropper
 
                     if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                     {
-                        outdirectory = fbd.SelectedPath;
+                        Properties.Settings.Default.outputdirectory = fbd.SelectedPath;
+                        Properties.Settings.Default.Save();
+                        SetStatusText("Set output directory successfully!");
+                        if(Properties.Settings.Default.inputdirectory != "") { startbutton.Enabled = true; }
                     }
                 }
             }
@@ -101,6 +117,8 @@ namespace autocropper
 
         private void stopbutton_Click(object sender, EventArgs e)
         {
+            stopbutton.Enabled = false;
+            startbutton.Enabled = true;
             //stop file watcher
             watcher.EnableRaisingEvents = false;
             SetStatusText("Stopped.");
@@ -114,6 +132,8 @@ namespace autocropper
             //check if settings and permissions look good
             if (settings_valid())
             {
+                stopbutton.Enabled = true;
+                startbutton.Enabled = false;
                 watch_folder();
             }
             
@@ -128,7 +148,7 @@ namespace autocropper
         private void watch_folder()
         {
             //Set the watchers path to the directory chosen
-            watcher.Path = indirectory;
+            watcher.Path = Properties.Settings.Default.inputdirectory;
 
             //Need to add more logic to do this maybe?
             watcher.IncludeSubdirectories = false;
@@ -162,7 +182,7 @@ namespace autocropper
             //Check file types and make sure this isn't an already cropped photo.
             if (Regex.IsMatch(fileExtension, @"\.jpeg|\.gif|.png|\.jpg", RegexOptions.IgnoreCase) && !Regex.IsMatch(e.Name,@"Cropped",RegexOptions.IgnoreCase))
             {
-                string destinationFile = outdirectory +"\\" + e.Name;
+                string destinationFile = Properties.Settings.Default.outputdirectory + "\\" + e.Name;
                 //Copy file to new directory
                 File.Copy(e.FullPath, destinationFile);
 
@@ -184,8 +204,10 @@ namespace autocropper
                 this.label4.Text = text;
             }
         }
+
         private void crop_photo(FileSystemEventArgs FileimagePath)
         {
+            SetStatusText("Cropping image");
             double width, height;
 
             Image image = Image.FromFile(FileimagePath.FullPath);
@@ -198,7 +220,7 @@ namespace autocropper
             
             File.Delete(FileimagePath.FullPath);
 
-            string newpath = indirectory+"\\Cropped"+FileimagePath.Name;
+            string newpath = Properties.Settings.Default.inputdirectory+"\\Cropped"+FileimagePath.Name;
             newimage2.Save(newpath);
 
             label4.ForeColor = Color.Blue;

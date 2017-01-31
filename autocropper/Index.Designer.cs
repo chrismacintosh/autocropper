@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.indirbutton = new System.Windows.Forms.Button();
+            this.outdirbutton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.stopbutton = new System.Windows.Forms.Button();
+            this.startbutton = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -49,25 +49,25 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // button1
+            // indirbutton
             // 
-            this.button1.Location = new System.Drawing.Point(78, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Directory to Monitor";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.watchpathButton_Click);
+            this.indirbutton.Location = new System.Drawing.Point(78, 12);
+            this.indirbutton.Name = "indirbutton";
+            this.indirbutton.Size = new System.Drawing.Size(109, 23);
+            this.indirbutton.TabIndex = 0;
+            this.indirbutton.Text = "Directory to Monitor";
+            this.indirbutton.UseVisualStyleBackColor = true;
+            this.indirbutton.Click += new System.EventHandler(this.watchpathButton_Click);
             // 
-            // button2
+            // outdirbutton
             // 
-            this.button2.Location = new System.Drawing.Point(78, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Output Directory";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.exportpathButton_Click);
+            this.outdirbutton.Location = new System.Drawing.Point(78, 93);
+            this.outdirbutton.Name = "outdirbutton";
+            this.outdirbutton.Size = new System.Drawing.Size(120, 23);
+            this.outdirbutton.TabIndex = 1;
+            this.outdirbutton.Text = "Output Directory";
+            this.outdirbutton.UseVisualStyleBackColor = true;
+            this.outdirbutton.Click += new System.EventHandler(this.exportpathButton_Click);
             // 
             // label1
             // 
@@ -109,25 +109,27 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Status:";
             // 
-            // button3
+            // stopbutton
             // 
-            this.button3.Location = new System.Drawing.Point(27, 224);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Stop";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.stopbutton_Click);
+            this.stopbutton.Enabled = false;
+            this.stopbutton.Location = new System.Drawing.Point(27, 224);
+            this.stopbutton.Name = "stopbutton";
+            this.stopbutton.Size = new System.Drawing.Size(75, 23);
+            this.stopbutton.TabIndex = 5;
+            this.stopbutton.Text = "Stop";
+            this.stopbutton.UseVisualStyleBackColor = true;
+            this.stopbutton.Click += new System.EventHandler(this.stopbutton_Click);
             // 
-            // button4
+            // startbutton
             // 
-            this.button4.Location = new System.Drawing.Point(157, 224);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Start";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.startbutton_Click);
+            this.startbutton.Enabled = false;
+            this.startbutton.Location = new System.Drawing.Point(157, 224);
+            this.startbutton.Name = "startbutton";
+            this.startbutton.Size = new System.Drawing.Size(75, 23);
+            this.startbutton.TabIndex = 6;
+            this.startbutton.Text = "Start";
+            this.startbutton.UseVisualStyleBackColor = true;
+            this.startbutton.Click += new System.EventHandler(this.startbutton_Click);
             // 
             // linkLabel1
             // 
@@ -164,13 +166,13 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.startbutton);
+            this.Controls.Add(this.stopbutton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.outdirbutton);
+            this.Controls.Add(this.indirbutton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(300, 300);
@@ -189,13 +191,13 @@
         #endregion
 
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button indirbutton;
+        private System.Windows.Forms.Button outdirbutton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button stopbutton;
+        private System.Windows.Forms.Button startbutton;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label4;
     }
