@@ -87,9 +87,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\images\backgrounds\big-background.png" />
     <Content Include="Icon.ico" />
-    <None Include="road.jpg" />
+    <None Include="resources\images\backgrounds\road.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
